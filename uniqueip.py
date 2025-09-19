@@ -1,0 +1,20 @@
+import re
+
+pattern = r"\d+\.\d+\.\d+\.\d+"
+text = """Apr 10 12:34:56 ubuntu sshd[12345]: Accepted password for alice from 192.168.1.10 port 54822 ssh2
+Apr 10 12:35:01 ubuntu sshd[12346]: Failed password for invalid user bob from 10.0.0.5 port 51900 ssh2
+Apr 10 12:36:22 ubuntu sshd[12347]: Accepted publickey for charlie from 203.0.113.5 port 34567 ssh2
+Apr 10 12:37:05 ubuntu sshd[12348]: Failed password for root from 198.51.100.23 port 59876 ssh2
+Apr 10 12:38:00 ubuntu sshd[12349]: Connection closed by 127.0.0.1 port 22"""
+
+ips= re.findall(pattern, text)
+
+# Convert to a set to remove duplicates
+unique_ips = set(ips)
+
+# Print each unique IP
+print("Unique IPs:")
+for ip in unique_ips:
+    print(ip)
+
+
